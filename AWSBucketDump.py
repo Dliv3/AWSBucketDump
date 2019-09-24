@@ -31,9 +31,11 @@ arguments = None
 def fetch(url):
     print('Fetching ' + url + '...')
     response = requests.get(url)
-    if response.status_code == 403 or response.status_code == 404:
+    if response.status_code == 403
+        status404(url)
+    elif response.status_code == 404:
         status403(url)
-    if response.status_code == 200:
+    elif response.status_code == 200:
         if "Content" in response.text:
             returnedList=status200(response,grep_list,url)
 
@@ -141,8 +143,14 @@ def print_banner():
 def cleanUp():
    print("Cleaning up files...")
 
+
+def status404(line):
+    # print(line.rstrip() + " NoSuchBucket.")
+    pass
+
+
 def status403(line):
-    print(line.rstrip() + " is not accessible.")
+    print(line.rstrip() + " Exists but AccessDenied.")
 
 
 def queue_up_download(filepath):
