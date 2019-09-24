@@ -31,7 +31,7 @@ arguments = None
 def fetch(url):
     print('Fetching ' + url + '...')
     response = requests.get(url)
-    if response.status_code == 403
+    if response.status_code == 403:
         status403(url)
     elif response.status_code == 404:
         status404(url)
@@ -231,6 +231,9 @@ def main():
     with open(arguments.hostlist) as f:
         for line in f:
             bucket = 'http://'+line.rstrip()+'.s3.amazonaws.com'
+            print('Queuing {}'.format(bucket) + '...')
+            bucket_q.put(bucket)
+            bucket = 'http://'+line.rstrip()+'.s3-accelerate.amazonaws.com'
             print('Queuing {}'.format(bucket) + '...')
             bucket_q.put(bucket)
 
