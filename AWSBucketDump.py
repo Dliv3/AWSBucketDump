@@ -32,9 +32,9 @@ def fetch(url):
     print('Fetching ' + url + '...')
     response = requests.get(url)
     if response.status_code == 403
-        status404(url)
-    elif response.status_code == 404:
         status403(url)
+    elif response.status_code == 404:
+        status404(url)
     elif response.status_code == 200:
         if "Content" in response.text:
             returnedList=status200(response,grep_list,url)
